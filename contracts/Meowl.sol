@@ -4,7 +4,7 @@
 
 website: https://meowl.xyz
 twitter: https://twitter.com/meowlxyz
-telegram:
+telegram: https://t.me/meowlxyz
 discord: https://discord.meowl.xyz
 
 */
@@ -29,14 +29,9 @@ contract Meowl is ERC20, Ownable {
 
     bool private swapping;
 
-    address public rewardSplitter =
-        address(0x2738d37ffbc86561f54096E08FEBdB27640c5702);
-
-    address public devWallet =
-        address(0x24F5bE25cC59079347CF7faE2562bc9BBD44b890);
-
-    address public lpWallet =
-        address(0x62F83227cD6d66eF3827a726502Ff6BD8f26Ef8d);
+    address public rewardSplitter;
+    address public devWallet;
+    address public lpWallet;
 
     uint256 _totalSupply = 15_000_000 * 1e18;
 
@@ -57,7 +52,6 @@ contract Meowl is ERC20, Ownable {
 
     IUniswapV2Router02 public uniswapV2Router;
     address public uniswapV2Pair;
-    address public constant deadAddress = address(0xdead);
 
     mapping(address => bool) private _isExcludedFromFees;
     mapping(address => bool) public _isExcludedMaxTransactionAmount;
@@ -65,21 +59,10 @@ contract Meowl is ERC20, Ownable {
 
     constructor() ERC20("Meowl", "MEOWL") {
         excludeFromFees(owner(), true);
-
-        excludeFromFees(rewardSplitter, true);
-        excludeFromFees(devWallet, true);
-        excludeFromFees(lpWallet, true);
-
         excludeFromFees(address(this), true);
-        excludeFromFees(address(0xdead), true);
+
         excludeFromMaxTransaction(owner(), true);
-
-        excludeFromMaxTransaction(rewardSplitter, true);
-        excludeFromMaxTransaction(devWallet, true);
-        excludeFromMaxTransaction(lpWallet, true);
-
         excludeFromMaxTransaction(address(this), true);
-        excludeFromMaxTransaction(address(0xdead), true);
 
         _mint(owner(), 14_985_000 * 1e18);
         _mint(address(this), 15_000 * 1e18);
@@ -99,7 +82,7 @@ contract Meowl is ERC20, Ownable {
     function reduceFees(uint buyFees_, uint sellFees_) external onlyOwner {
         require(
             buyFees_ < buyFees && sellFees_ < sellFees,
-            "MEOWL/REDUCE_TAX_ONLY"
+            "MEOWL/REDUCE_ONLY"
         );
 
         buyFees = buyFees_;
@@ -129,16 +112,17 @@ contract Meowl is ERC20, Ownable {
     }
 
     function addLiquidity() external payable onlyOwner {
-        IUniswapV2Router02 _uniswapV2Router = IUniswapV2Router02(
+        uniswapV2Router = IUniswapV2Router02(
             0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D
         );
-
-        uniswapV2Router = _uniswapV2Router;
-        excludeFromMaxTransaction(address(_uniswapV2Router), true);
+        excludeFromMaxTransaction(address(uniswapV2Router), true);
         _approve(address(this), address(uniswapV2Router), totalSupply());
 
-        uniswapV2Pair = IUniswapV2Factory(_uniswapV2Router.factory())
-            .createPair(address(this), _uniswapV2Router.WETH());
+        uniswapV2Pair = IUniswapV2Factory(uniswapV2Router.factory()).createPair(
+            address(this),
+            uniswapV2Router.WETH()
+        );
+
         excludeFromMaxTransaction(address(uniswapV2Pair), true);
         _setAutomatedMarketMakerPair(address(uniswapV2Pair), true);
 
@@ -164,6 +148,14 @@ contract Meowl is ERC20, Ownable {
         devWallet = devWallet_;
         rewardSplitter = rewardSplitter_;
         lpWallet = lpWallet_;
+
+        excludeFromFees(rewardSplitter, true);
+        excludeFromFees(devWallet, true);
+        excludeFromFees(lpWallet, true);
+
+        excludeFromMaxTransaction(rewardSplitter, true);
+        excludeFromMaxTransaction(devWallet, true);
+        excludeFromMaxTransaction(lpWallet, true);
     }
 
     function isExcludedFromFees(address account) public view returns (bool) {
