@@ -348,6 +348,7 @@ contract MeowlFeeSharingWithCompounding is Ownable, Pausable, ReentrancyGuard {
         path[0] = address(rewardToken);
         path[1] = address(meowl);
 
+        uint startBal = meowl.balanceOf(address(this));
         // Swap
         try
             uniswapRouter.swapExactTokensForTokensSupportingFeeOnTransferTokens(
@@ -358,6 +359,8 @@ contract MeowlFeeSharingWithCompounding is Ownable, Pausable, ReentrancyGuard {
                 block.timestamp
             )
         {
+            uint amountOut = meowl.balanceOf(address(this)) - startBal;
+            emit ConversionToMEOWL(_amount, amountOut);
             return true;
         } catch {
             emit FailedConversion();
