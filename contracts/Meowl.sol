@@ -18,6 +18,49 @@ import "./interfaces/IUniswapV2Factory.sol";
 import "./interfaces/IUniswapV2Pair.sol";
 import "./interfaces/IUniswapV2Router02.sol";
 
+/* 
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMXKNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN0XMMMMMMMMMM
+MMMMMMMMWk'.c0WMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMW0c.'kWMMMMMMMM
+MMMMMMMNo.   .:xKWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWKx:.   .oNMMMMMMM
+MMMMMMXc        .;cdxOKXWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWNKOkdc;.        cXMMMMMM
+MMMMMXc               ..,:oxKWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWKxl;..               cXMMMMM
+MMMMNl                      .,oKWMMMMMMMMMMMMMMMMMMWWNNXXNNMMMMMMMMMWKd;.                     lNMMMM
+MMMWx.                         .lKMMMMMMMMMMWXOxlc:;,'..,l0WMMMMMMW0c.                        .xWMMM
+MMMK;      .dOOOkxoc,.           'kWMMMMMNOo;.         ,kNMMMMMMWKl.          .,codkOOOd.      ;KMMM
+MMMx.      lWMMMMMMMWXkl'         .xWMWKd,.           cXMMWNKXWWk'         'lkXWMMMMMMMWl      .xMMM
+MMNl      .kMMMMMMMMMMMMXx'        .kXd.              ;olc;'.lXd.        ,xXWMMMMMMMMMMMk.      lNMM
+MMX:      ,KMMMMMMMMMMMMMMXl.       .'                      .xd.       .lXMMMMMMMMMMMMMMK,      ;XMM
+MMX;      ;XMMMMMMMMMMMMMMMWd.                              .;.       .dWMMMMMMMMMMMMMMMX;      ;XMM
+MMX:      ,KMMMMMMMMMMMMMMMMNo.                                      .oWMMMMMMMMMMMMMMMMK;      :XMM
+MMWl      '0MMMMMMMMMMMMMMMMMX;                                      ;XMMMMMMMMMMMMMMMMM0'      lWMM
+MMMk.     .xMMMMMMMMMMMMMMMMMWd.                                    .dWMMMMMMMMMMMMMMMMMx.     .kMMM
+MMMX:      :XMMMMMMMMMMMMMMMMNd.                                    .dNWMMMMMMMMMMMMMMMX:      :XMMM
+MMMMk.     .xWMMMMMMMMMMMN0dc'.                                      .':d0NMMMMMMMMMMMWx.     .kMMMM
+MMMMNo.     'OMMMMMMMMWKd,.                                              .,dXMMMMMMMMMO'     .oNMMMM
+MMMMMNl      'OWMMMMMNd.     .,clolc;.                        .;clolc,.     'dNMMMMMWO'      lNMMMMM
+MMMMMMXl.     .xWMMMXc     'dKWMWXxodkkc.                  .ckKOddONMWKd'     cKMMMNx.     .lXMMMMMM
+MMMMMMMNd.     .cKWNc     ;KMMMNd.   .xNO;                ;OW0:.   :KMMMK;     cXWKc.     .dNMMMMMMM
+MMMMMMMMWO;      .ol.    ,0MMMWx.     .kMXc              cXMX;      :XMMM0,    .lo.      ;OWMMMMMMMM
+MMMMMMMMMMNd'            oWMMMX;       cNMK;            ;KMMx.      .OMMMWo            .oXWNKKNMMMMM
+MMMMMMMMMMMWO;          .xMMMMK,       :XMWx.          .xMMWd       .xMMMMx.           .',,',dNMMMMM
+MMMMMMMN0xl;.           .xMMMMK;       cNMMO.          .OMMMx.      .OMMMMx.               ,kNMMMMMM
+MMMMNOl,.                lNMMMNl      .dWMMk.          .kMMM0'      ,KMMMNl             .:xNMMMMMMMM
+MMMXc.                   .kWMMMO'     ;KMMNl  .;llll,   lNMMNo     .dWMMWk.            'oKWMMMMMMMMM
+MMMx.                     .:dOXNk,...cKMMNd.  ,0MMMMk.  .dWMMXl...,xXXOd:.               .;dKWMMMMMM
+MMMd.                         .,::;:oxkxo;.    cXMMK;    .;oxxxl::c:,.                      .xWMMMMM
+MMMO.          .'.                              ckk:                                         .kMMMMM
+MMMX:       'lO0l.                                                                            cNMMMM
+MMMMO.    'dXMNo.                                                                             ;XMMMM
+MMMMWd.  :KMMMO.       .                                                 ...        .:dol:'.  :XMMMM
+MMMMMNl.cXMMMM0'  .;ok000kd:.                                         .lO0K0Oxc'    .OMMMWN0o,oWMMMM
+MMMMMMXOKMMMMMWO,,kWMMMMMMMWXx;.                                   .,dKWMMMMMMMXd. .oNMMMMMMMNNMMMMM
+MMMMMMMMMMMMMMMMNNMMMMMMMMMMMMW0d:.                             .;o0NMMMMMMMMMMMWOcxNMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWXOdl;'..                .';cdOXWMMMMMMMMMMMMMMMMWMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWNX0OkxdoolllooodxO0KNWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+*/
+
 contract Meowl is ERC20, Ownable {
     using SafeMath for uint256;
 
@@ -43,12 +86,12 @@ contract Meowl is ERC20, Ownable {
     bool public tradingActive = false;
     bool public swapEnabled = false;
 
-    uint256 public buyFees = 5;
-    uint256 public sellFees = 5;
+    uint256 public buyFees = 50;
+    uint256 public sellFees = 50;
 
-    uint256 public revshareAmount = 20;
+    uint256 public revshareAmount = 40;
     uint256 public lpAmount = 20;
-    uint256 public devAmount = 60;
+    uint256 public devAmount = 40;
 
     IUniswapV2Router02 public uniswapV2Router;
     address public uniswapV2Pair;
@@ -64,8 +107,7 @@ contract Meowl is ERC20, Ownable {
         excludeFromMaxTransaction(owner(), true);
         excludeFromMaxTransaction(address(this), true);
 
-        _mint(owner(), 14_985_000 * 1e18);
-        _mint(address(this), 15_000 * 1e18);
+        _mint(owner(), 15_000_000 * 1e18);
     }
 
     receive() external payable {}
@@ -76,12 +118,14 @@ contract Meowl is ERC20, Ownable {
     }
 
     function removeLimits() external onlyOwner {
+        buyFees = 5;
+        sellFees = 5;
         limitsInEffect = false;
     }
 
     function reduceFees(uint buyFees_, uint sellFees_) external onlyOwner {
         require(
-            buyFees_ < buyFees && sellFees_ < sellFees,
+            buyFees_ <= buyFees && sellFees_ <= sellFees,
             "MEOWL/REDUCE_ONLY"
         );
 
@@ -104,14 +148,11 @@ contract Meowl is ERC20, Ownable {
         address pair,
         bool value
     ) public onlyOwner {
-        require(
-            pair != uniswapV2Pair,
-            "The pair cannot be removed from automatedMarketMakerPairs"
-        );
+        require(pair != uniswapV2Pair, "MEOWL/CANT_REMOVE_UNIV2");
         _setAutomatedMarketMakerPair(pair, value);
     }
 
-    function addLiquidity() external payable onlyOwner {
+    function createPair() external onlyOwner {
         uniswapV2Router = IUniswapV2Router02(
             0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D
         );
@@ -125,15 +166,6 @@ contract Meowl is ERC20, Ownable {
 
         excludeFromMaxTransaction(address(uniswapV2Pair), true);
         _setAutomatedMarketMakerPair(address(uniswapV2Pair), true);
-
-        uniswapV2Router.addLiquidityETH{value: msg.value}(
-            address(this),
-            15_000 * 1e18,
-            0,
-            0,
-            owner(),
-            block.timestamp
-        );
     }
 
     function _setAutomatedMarketMakerPair(address pair, bool value) private {
@@ -279,17 +311,13 @@ contract Meowl is ERC20, Ownable {
 
             swapTokensForEth(amountToSwapForETH);
 
-            uint256 amountEthToSend = address(this).balance;
+            uint256 ethBalance = address(this).balance;
 
-            uint256 amountToRevshare = amountEthToSend.mul(revshareAmount).div(
-                100
-            );
+            uint256 amountToRevshare = ethBalance.mul(revshareAmount).div(100);
 
-            uint256 amountToLp = amountEthToSend.mul(lpAmount).div(100);
+            uint256 amountToLp = ethBalance.mul(lpAmount).div(100);
 
-            uint256 amountToDev = amountEthToSend.sub(
-                amountToRevshare + amountToLp
-            );
+            uint256 amountToDev = ethBalance.sub(amountToRevshare + amountToLp);
 
             (success, ) = address(rewardSplitter).call{value: amountToRevshare}(
                 ""
@@ -299,7 +327,7 @@ contract Meowl is ERC20, Ownable {
 
             (success, ) = address(devWallet).call{value: amountToDev}("");
 
-            emit SwapBackSuccess(amountToSwapForETH, amountEthToSend, success);
+            emit SwapBackSuccess(amountToSwapForETH, ethBalance, success);
         }
     }
 }

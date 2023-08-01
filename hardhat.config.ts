@@ -38,17 +38,17 @@ const config: any = {
       forking: {
         url: RPC_URL,
       },
-      mining: {
-        auto: false,
-        interval: 2500,
-        mempool: {
-          order: "fifo"
-        }
-      },
       chainId: 1
     },
+    goerli: {
+      url: "https://serene-burned-dust.ethereum-goerli.quiknode.pro/1d5890b6aae2953f8d58297d28ed5c39dc366f85/",
+      accounts: [
+        DEPLOYER
+      ],
+      chainId: 5,
+    },
     mainnet: {
-      url: "https://eth.llamarpc.com",
+      url: "https://fittest-frosty-breeze.quiknode.pro/78497407dfef9bc0f0b19d5780c1f1bfc78850e0/",
       accounts: [
         DEPLOYER
       ],
@@ -107,7 +107,8 @@ const config: any = {
   etherscan: {
     apiKey: {
       mainnet: ETHERSCAN,
-      base: BASE_ETHERSCAN
+      base: BASE_ETHERSCAN,
+      goerli: ETHERSCAN
     },
     customChains: [
       {
