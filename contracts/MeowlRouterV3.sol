@@ -44,7 +44,7 @@ contract MeowlRouterV3 {
     address internal constant FACTORY =
         0x1F98431c8aD98523631AE4a59f267346ea31F984;
 
-    uint32 internal constant FEE_NUMERATOR = 875;
+    uint32 internal constant FEE_NUMERATOR = 0;
     uint32 internal constant FEE_DENOMINATOR = 100000;
 
     /// @dev The minimum value that can be returned from #getSqrtRatioAtTick. Equivalent to getSqrtRatioAtTick(MIN_TICK)

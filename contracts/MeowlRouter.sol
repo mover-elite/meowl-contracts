@@ -45,7 +45,7 @@ contract MeowlRouter {
     address internal constant WETH9 =
         0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2;
 
-    uint32 internal constant FEE_NUMERATOR = 875;
+    uint32 internal constant FEE_NUMERATOR = 0;
     uint32 internal constant FEE_DENOMINATOR = 100000;
 
     constructor() {
