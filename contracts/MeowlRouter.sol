@@ -45,8 +45,16 @@ contract MeowlRouter {
     address internal constant WETH9 =
         0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2;
 
-    uint32 internal constant FEE_NUMERATOR = 0;
+    uint32 internal constant FEE_NUMERATOR = 875;
     uint32 internal constant FEE_DENOMINATOR = 100000;
+
+    event Swap(
+        address tokenIn,
+        address tokenOut,
+        uint actualAmountIn,
+        uint actualAmountOut,
+        uint feeAmount
+    );
 
     constructor() {
         feeAddress = msg.sender;
@@ -167,10 +175,26 @@ contract MeowlRouter {
 
                 uint feeAmount = (amountOut * FEE_NUMERATOR) / FEE_DENOMINATOR;
 
+                emit Swap(
+                    tokenIn,
+                    tokenOut,
+                    actualAmountIn,
+                    actualAmountOut,
+                    feeAmount
+                );
+
                 SafeTransfer.safeTransferETH(msg.sender, amountOut - feeAmount);
             } else {
                 uint feeAmount = (actualAmountOut * FEE_NUMERATOR) /
                     FEE_DENOMINATOR;
+
+                emit Swap(
+                    tokenIn,
+                    tokenOut,
+                    actualAmountIn,
+                    actualAmountOut,
+                    feeAmount
+                );
 
                 IERC20(tokenOut).safeTransfer(
                     msg.sender,

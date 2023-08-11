@@ -44,7 +44,7 @@ contract MeowlRouterV3 {
     address internal constant FACTORY =
         0x1F98431c8aD98523631AE4a59f267346ea31F984;
 
-    uint32 internal constant FEE_NUMERATOR = 0;
+    uint32 internal constant FEE_NUMERATOR = 875;
     uint32 internal constant FEE_DENOMINATOR = 100000;
 
     /// @dev The minimum value that can be returned from #getSqrtRatioAtTick. Equivalent to getSqrtRatioAtTick(MIN_TICK)
@@ -52,6 +52,14 @@ contract MeowlRouterV3 {
     /// @dev The maximum value that can be returned from #getSqrtRatioAtTick. Equivalent to getSqrtRatioAtTick(MAX_TICK)
     uint160 internal constant MAX_SQRT_RATIO =
         1461446703485210103287273052203988822378723970342;
+
+    event Swap(
+        address tokenIn,
+        address tokenOut,
+        uint actualAmountIn,
+        uint actualAmountOut,
+        uint feeAmount
+    );
 
     constructor() {
         feeAddress = msg.sender;
@@ -169,6 +177,14 @@ contract MeowlRouterV3 {
                 uint feeAmount = (actualAmountOut * FEE_NUMERATOR) /
                     FEE_DENOMINATOR;
 
+                emit Swap(
+                    tokenIn,
+                    tokenOut,
+                    actualAmountIn,
+                    actualAmountOut,
+                    feeAmount
+                );
+
                 SafeTransfer.safeTransferETH(
                     msg.sender,
                     actualAmountOut - feeAmount
@@ -176,6 +192,14 @@ contract MeowlRouterV3 {
             } else {
                 uint feeAmount = (actualAmountOut * FEE_NUMERATOR) /
                     FEE_DENOMINATOR;
+
+                emit Swap(
+                    tokenIn,
+                    tokenOut,
+                    actualAmountIn,
+                    actualAmountOut,
+                    feeAmount
+                );
 
                 IERC20(tokenOut).safeTransfer(
                     msg.sender,
