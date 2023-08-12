@@ -103,6 +103,7 @@ contract MeowlRouterV3 {
         uint24 fee;
         uint minAmountOut;
         address receiver;
+        uint feeAmount;
 
         assembly {
             // bytes20
@@ -118,7 +119,7 @@ contract MeowlRouterV3 {
         uint actualAmountIn;
 
         if (address(tokenIn) == WETH9 && msg.value > 0) {
-            uint feeAmount = (msg.value * FEE_NUMERATOR) / FEE_DENOMINATOR;
+            feeAmount = (msg.value * FEE_NUMERATOR) / FEE_DENOMINATOR;
             actualAmountIn = msg.value - feeAmount;
             receiver = msg.sender;
         } else {
@@ -174,32 +175,14 @@ contract MeowlRouterV3 {
             if (tokenOut == WETH9) {
                 IWETH(WETH9).withdraw(actualAmountOut);
 
-                uint feeAmount = (actualAmountOut * FEE_NUMERATOR) /
-                    FEE_DENOMINATOR;
-
-                emit Swap(
-                    tokenIn,
-                    tokenOut,
-                    actualAmountIn,
-                    actualAmountOut,
-                    feeAmount
-                );
+                feeAmount = (actualAmountOut * FEE_NUMERATOR) / FEE_DENOMINATOR;
 
                 SafeTransfer.safeTransferETH(
                     msg.sender,
                     actualAmountOut - feeAmount
                 );
             } else {
-                uint feeAmount = (actualAmountOut * FEE_NUMERATOR) /
-                    FEE_DENOMINATOR;
-
-                emit Swap(
-                    tokenIn,
-                    tokenOut,
-                    actualAmountIn,
-                    actualAmountOut,
-                    feeAmount
-                );
+                feeAmount = (actualAmountOut * FEE_NUMERATOR) / FEE_DENOMINATOR;
 
                 IERC20(tokenOut).safeTransfer(
                     msg.sender,
@@ -207,6 +190,14 @@ contract MeowlRouterV3 {
                 );
             }
         }
+
+        emit Swap(
+            tokenIn,
+            tokenOut,
+            actualAmountIn,
+            actualAmountOut,
+            feeAmount
+        );
     }
 
     function uniswapV3SwapCallback(

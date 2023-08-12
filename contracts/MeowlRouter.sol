@@ -93,6 +93,7 @@ contract MeowlRouter {
         uint minAmountOut;
         uint amountIn;
         address receiver;
+        uint feeAmount;
 
         assembly {
             // bytes20
@@ -106,7 +107,7 @@ contract MeowlRouter {
         }
 
         if (address(tokenIn) == WETH9 && msg.value > 0) {
-            uint feeAmount = (msg.value * FEE_NUMERATOR) / FEE_DENOMINATOR;
+            feeAmount = (msg.value * FEE_NUMERATOR) / FEE_DENOMINATOR;
             amountIn = msg.value - feeAmount;
             IWETH weth = IWETH(WETH9);
 
@@ -173,28 +174,11 @@ contract MeowlRouter {
             if (tokenOut == WETH9) {
                 IWETH(WETH9).withdraw(amountOut);
 
-                uint feeAmount = (amountOut * FEE_NUMERATOR) / FEE_DENOMINATOR;
-
-                emit Swap(
-                    tokenIn,
-                    tokenOut,
-                    actualAmountIn,
-                    actualAmountOut,
-                    feeAmount
-                );
+                feeAmount = (actualAmountOut * FEE_NUMERATOR) / FEE_DENOMINATOR;
 
                 SafeTransfer.safeTransferETH(msg.sender, amountOut - feeAmount);
             } else {
-                uint feeAmount = (actualAmountOut * FEE_NUMERATOR) /
-                    FEE_DENOMINATOR;
-
-                emit Swap(
-                    tokenIn,
-                    tokenOut,
-                    actualAmountIn,
-                    actualAmountOut,
-                    feeAmount
-                );
+                feeAmount = (actualAmountOut * FEE_NUMERATOR) / FEE_DENOMINATOR;
 
                 IERC20(tokenOut).safeTransfer(
                     msg.sender,
@@ -202,6 +186,14 @@ contract MeowlRouter {
                 );
             }
         }
+
+        emit Swap(
+            tokenIn,
+            tokenOut,
+            actualAmountIn,
+            actualAmountOut,
+            feeAmount
+        );
     }
 
     function _getAmountOut(
