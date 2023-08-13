@@ -1,7 +1,7 @@
 import { ethers } from "hardhat";
 
 async function main() {
-  const Router = await ethers.getContractFactory("MeowlRouterV3");
+  const Router = await ethers.getContractFactory("MeowlRouter");
   const router = await Router.deploy();
 
   await router.deployed();

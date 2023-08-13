@@ -5,7 +5,6 @@ import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 import {Pausable} from "@openzeppelin/contracts/security/Pausable.sol";
 import {ReentrancyGuard} from "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import {IERC20, SafeERC20} from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
-
 import {IUniswapV2Router02} from "./interfaces/IUniswapV2Router02.sol";
 import {IRewardsDistribution} from "./interfaces/IRewardsDistribution.sol";
 
@@ -76,7 +75,7 @@ contract MeowlFeeSharingWithCompounding is Ownable, Pausable, ReentrancyGuard {
             IRewardsDistribution(_feeSharingSystem).stakingToken()
         );
         address rewardTokenAddress = address(
-            IRewardsDistribution(_feeSharingSystem).rewardToken()
+            IRewardsDistribution(_feeSharingSystem).rewardsToken()
         );
 
         meowl = IERC20(meowlTokenAddress);

@@ -51,7 +51,7 @@ const _abi = [
   },
   {
     inputs: [],
-    name: "rewardToken",
+    name: "rewardsToken",
     outputs: [
       {
         internalType: "contract IERC20",

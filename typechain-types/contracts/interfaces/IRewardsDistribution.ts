@@ -28,7 +28,7 @@ export interface IRewardsDistributionInterface extends utils.Interface {
     "balanceOf(address)": FunctionFragment;
     "getReward()": FunctionFragment;
     "notifyRewardAmount(uint256)": FunctionFragment;
-    "rewardToken()": FunctionFragment;
+    "rewardsToken()": FunctionFragment;
     "stake(uint256)": FunctionFragment;
     "stakingToken()": FunctionFragment;
     "totalSupply()": FunctionFragment;
@@ -40,7 +40,7 @@ export interface IRewardsDistributionInterface extends utils.Interface {
       | "balanceOf"
       | "getReward"
       | "notifyRewardAmount"
-      | "rewardToken"
+      | "rewardsToken"
       | "stake"
       | "stakingToken"
       | "totalSupply"
@@ -57,7 +57,7 @@ export interface IRewardsDistributionInterface extends utils.Interface {
     values: [PromiseOrValue<BigNumberish>]
   ): string;
   encodeFunctionData(
-    functionFragment: "rewardToken",
+    functionFragment: "rewardsToken",
     values?: undefined
   ): string;
   encodeFunctionData(
@@ -84,7 +84,7 @@ export interface IRewardsDistributionInterface extends utils.Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "rewardToken",
+    functionFragment: "rewardsToken",
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "stake", data: BytesLike): Result;
@@ -142,7 +142,7 @@ export interface IRewardsDistribution extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
-    rewardToken(overrides?: CallOverrides): Promise<[string]>;
+    rewardsToken(overrides?: CallOverrides): Promise<[string]>;
 
     stake(
       amount: PromiseOrValue<BigNumberish>,
@@ -173,7 +173,7 @@ export interface IRewardsDistribution extends BaseContract {
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
-  rewardToken(overrides?: CallOverrides): Promise<string>;
+  rewardsToken(overrides?: CallOverrides): Promise<string>;
 
   stake(
     amount: PromiseOrValue<BigNumberish>,
@@ -202,7 +202,7 @@ export interface IRewardsDistribution extends BaseContract {
       overrides?: CallOverrides
     ): Promise<void>;
 
-    rewardToken(overrides?: CallOverrides): Promise<string>;
+    rewardsToken(overrides?: CallOverrides): Promise<string>;
 
     stake(
       amount: PromiseOrValue<BigNumberish>,
@@ -236,7 +236,7 @@ export interface IRewardsDistribution extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
-    rewardToken(overrides?: CallOverrides): Promise<BigNumber>;
+    rewardsToken(overrides?: CallOverrides): Promise<BigNumber>;
 
     stake(
       amount: PromiseOrValue<BigNumberish>,
@@ -268,7 +268,7 @@ export interface IRewardsDistribution extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
-    rewardToken(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    rewardsToken(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     stake(
       amount: PromiseOrValue<BigNumberish>,

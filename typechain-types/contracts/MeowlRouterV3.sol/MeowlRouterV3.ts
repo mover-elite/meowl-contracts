@@ -13,7 +13,11 @@ import type {
   Signer,
   utils,
 } from "ethers";
-import type { FunctionFragment, Result } from "@ethersproject/abi";
+import type {
+  FunctionFragment,
+  Result,
+  EventFragment,
+} from "@ethersproject/abi";
 import type { Listener, Provider } from "@ethersproject/providers";
 import type {
   TypedEventFilter,
@@ -52,8 +56,26 @@ export interface MeowlRouterV3Interface extends utils.Interface {
     data: BytesLike
   ): Result;
 
-  events: {};
+  events: {
+    "Swap(address,address,uint256,uint256,uint256)": EventFragment;
+  };
+
+  getEvent(nameOrSignatureOrTopic: "Swap"): EventFragment;
 }
+
+export interface SwapEventObject {
+  tokenIn: string;
+  tokenOut: string;
+  actualAmountIn: BigNumber;
+  actualAmountOut: BigNumber;
+  feeAmount: BigNumber;
+}
+export type SwapEvent = TypedEvent<
+  [string, string, BigNumber, BigNumber, BigNumber],
+  SwapEventObject
+>;
+
+export type SwapEventFilter = TypedEventFilter<SwapEvent>;
 
 export interface MeowlRouterV3 extends BaseContract {
   connect(signerOrProvider: Signer | Provider | string): this;
@@ -121,7 +143,22 @@ export interface MeowlRouterV3 extends BaseContract {
     ): Promise<void>;
   };
 
-  filters: {};
+  filters: {
+    "Swap(address,address,uint256,uint256,uint256)"(
+      tokenIn?: null,
+      tokenOut?: null,
+      actualAmountIn?: null,
+      actualAmountOut?: null,
+      feeAmount?: null
+    ): SwapEventFilter;
+    Swap(
+      tokenIn?: null,
+      tokenOut?: null,
+      actualAmountIn?: null,
+      actualAmountOut?: null,
+      feeAmount?: null
+    ): SwapEventFilter;
+  };
 
   estimateGas: {
     recover(

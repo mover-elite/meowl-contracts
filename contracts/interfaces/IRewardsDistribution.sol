@@ -10,7 +10,7 @@ interface IRewardsDistribution {
 
     function stakingToken() external view returns (IERC20);
 
-    function rewardToken() external view returns (IERC20);
+    function rewardsToken() external view returns (IERC20);
 
     function balanceOf(address account) external view returns (uint256);
 

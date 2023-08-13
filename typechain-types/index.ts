@@ -46,3 +46,5 @@ export type { CompTimelock } from "./contracts/Timelock.sol/CompTimelock";
 export { CompTimelock__factory } from "./factories/contracts/Timelock.sol/CompTimelock__factory";
 export type { VestedMeowl } from "./contracts/VestedMeowl";
 export { VestedMeowl__factory } from "./factories/contracts/VestedMeowl__factory";
+export type { WETH9 } from "./contracts/WETH.sol/WETH9";
+export { WETH9__factory } from "./factories/contracts/WETH.sol/WETH9__factory";

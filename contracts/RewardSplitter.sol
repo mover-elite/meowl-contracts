@@ -28,7 +28,7 @@ contract RewardSplitter is Ownable {
         weth.deposit{value: address(this).balance}();
 
         uint256 publicStaked = meowl.balanceOf(stakingPublic);
-        uint256 privateStaked = meowl.balanceOf(stakingVested);
+        uint256 privateStaked = vmeowl.balanceOf(stakingVested);
         uint256 totalStaked = publicStaked + privateStaked;
 
         uint256 publicShares = (publicStaked / totalStaked) * 10_000;

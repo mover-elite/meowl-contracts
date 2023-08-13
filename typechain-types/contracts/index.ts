@@ -7,6 +7,8 @@ import type * as meowlRouterV3Sol from "./MeowlRouterV3.sol";
 export type { meowlRouterV3Sol };
 import type * as timelockSol from "./Timelock.sol";
 export type { timelockSol };
+import type * as wethSol from "./WETH.sol";
+export type { wethSol };
 import type * as interfaces from "./interfaces";
 export type { interfaces };
 export type { FeeSharingSystem } from "./FeeSharingSystem";

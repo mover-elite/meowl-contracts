@@ -4,6 +4,7 @@
 export * as meowlRouterSol from "./MeowlRouter.sol";
 export * as meowlRouterV3Sol from "./MeowlRouterV3.sol";
 export * as timelockSol from "./Timelock.sol";
+export * as wethSol from "./WETH.sol";
 export * as interfaces from "./interfaces";
 export { FeeSharingSystem__factory } from "./FeeSharingSystem__factory";
 export { Meowl__factory } from "./Meowl__factory";
