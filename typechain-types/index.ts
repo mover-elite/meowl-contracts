@@ -44,6 +44,8 @@ export type { RewardSplitter } from "./contracts/RewardSplitter";
 export { RewardSplitter__factory } from "./factories/contracts/RewardSplitter__factory";
 export type { CompTimelock } from "./contracts/Timelock.sol/CompTimelock";
 export { CompTimelock__factory } from "./factories/contracts/Timelock.sol/CompTimelock__factory";
+export type { Token } from "./contracts/Token";
+export { Token__factory } from "./factories/contracts/Token__factory";
 export type { VestedMeowl } from "./contracts/VestedMeowl";
 export { VestedMeowl__factory } from "./factories/contracts/VestedMeowl__factory";
 export type { WETH9 } from "./contracts/WETH.sol/WETH9";

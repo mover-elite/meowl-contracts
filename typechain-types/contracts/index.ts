@@ -15,4 +15,5 @@ export type { FeeSharingSystem } from "./FeeSharingSystem";
 export type { Meowl } from "./Meowl";
 export type { MeowlFeeSharingWithCompounding } from "./MeowlFeeSharingWithCompounding";
 export type { RewardSplitter } from "./RewardSplitter";
+export type { Token } from "./Token";
 export type { VestedMeowl } from "./VestedMeowl";

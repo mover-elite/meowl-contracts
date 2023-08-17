@@ -97,6 +97,10 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.CompTimelock__factory>;
     getContractFactory(
+      name: "Token",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.Token__factory>;
+    getContractFactory(
       name: "VestedMeowl",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.VestedMeowl__factory>;
@@ -210,6 +214,11 @@ declare module "hardhat/types/runtime" {
       address: string,
       signer?: ethers.Signer
     ): Promise<Contracts.CompTimelock>;
+    getContractAt(
+      name: "Token",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.Token>;
     getContractAt(
       name: "VestedMeowl",
       address: string,

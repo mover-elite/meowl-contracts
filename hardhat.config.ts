@@ -1,10 +1,10 @@
 import "@nomiclabs/hardhat-waffle";
 import "@nomiclabs/hardhat-ethers";
-import "hardhat-gas-reporter"
+import "hardhat-gas-reporter";
 import "@typechain/hardhat";
 import "@nomicfoundation/hardhat-verify";
-import * as dotenv from 'dotenv'
-dotenv.config()
+import * as dotenv from "dotenv";
+dotenv.config();
 
 const RPC_URL = process.env.RPC_URL;
 if (!RPC_URL) {
@@ -38,27 +38,21 @@ const config: any = {
       forking: {
         url: RPC_URL,
       },
-      chainId: 1
+      chainId: 1,
     },
     goerli: {
       url: "https://serene-burned-dust.ethereum-goerli.quiknode.pro/1d5890b6aae2953f8d58297d28ed5c39dc366f85/",
-      accounts: [
-        DEPLOYER
-      ],
+      accounts: [DEPLOYER],
       chainId: 5,
     },
     mainnet: {
       url: "https://fittest-frosty-breeze.quiknode.pro/78497407dfef9bc0f0b19d5780c1f1bfc78850e0/",
-      accounts: [
-        DEPLOYER
-      ],
+      accounts: [DEPLOYER],
       chainId: 1,
     },
     base: {
       url: "https://developer-access-mainnet.base.org",
-      accounts: [
-        DEPLOYER
-      ],
+      accounts: [DEPLOYER],
       chainId: 8453,
     },
   },
@@ -111,13 +105,13 @@ const config: any = {
           },
         },
       },
-    ]
+    ],
   },
   etherscan: {
     apiKey: {
       mainnet: ETHERSCAN,
       base: BASE_ETHERSCAN,
-      goerli: ETHERSCAN
+      goerli: ETHERSCAN,
     },
     customChains: [
       {
@@ -125,15 +119,15 @@ const config: any = {
         chainId: 8453,
         urls: {
           apiURL: "https://api.basescan.org/api",
-          browserURL: "https://basescan.org/"
-        }
-      }
-    ]
+          browserURL: "https://basescan.org/",
+        },
+      },
+    ],
   },
-  gasReporter: {
-    coinmarketcap: CMC,
-    currency: "eth"
-  }
+  // gasReporter: {
+  //   coinmarketcap: CMC,
+  //   currency: "eth"
+  // }
 };
 
 export default config;
